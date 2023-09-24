@@ -51,7 +51,6 @@ const Listview = ({ data , buttonsShouldBeShown ,RetrieveData }) => {
 
   return (
     <>
-        <p>user items list</p>
         <ul>
           {arrdata.map((item, index) => (
             // <div key={index}>

@@ -11,10 +11,12 @@ function Home() {
 
   const navigate = useNavigate();
   const userId = localStorage.getItem('x-user-id');
+  const userName = localStorage.getItem('x-user-name').toUpperCase();
 
   const logout = () => {
     localStorage.removeItem('x-auth-token');
     localStorage.removeItem('x-user-id');
+    localStorage.removeItem('x-user-name');
     Toaster("Logout Successful!","success");
     navigate('/auth');
   };
@@ -73,14 +75,14 @@ function Home() {
 
   return (
     <div>
-      <h1>Home</h1>
+      <h1>{userName}</h1>
       <button onClick={logout}>Logout</button>
       {data!=null && <UserItems data={data} RetrieveData={RetrieveData}></UserItems>}
       {isItemFormAdded && <Additemform onSubmit={handleFormSubmit} defaultName={''} defaultLink={''}/>}
       {data==null && <br></br>}
       <button onClick={handleAddButtonClick}>{buttonName}</button>
       <div style={{height:20}}></div>
-      <QrGenerator userId={localStorage.getItem('x-user-id')}></QrGenerator>
+      <QrGenerator userId={userId} userName={userName}></QrGenerator>
     </div>
   )
 }

@@ -7,6 +7,7 @@ function Qr() {
 
   const buttonsShouldBeShown = false;
   const [data,setData] = useState(null);
+  const [userName,setUserName] = useState(null);
 
   async function RetrieveData(userId)
   {
@@ -20,6 +21,8 @@ function Qr() {
     
     // Get the 'userId' parameter value
     const userId = searchParams.get('userId');
+    const userName = searchParams.get('userName');
+    setUserName(userName);
 
     // Check if userId exists and is not empty
     if (userId) {
@@ -33,6 +36,7 @@ function Qr() {
 return (
 <>
     <div>
+        <h1>{userName}</h1>
         {data!=null ?(<Listview data={data} buttonsShouldBeShown={buttonsShouldBeShown} RetrieveData={RetrieveData}/>):(<></>)}
     </div>
 </>

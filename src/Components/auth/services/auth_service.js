@@ -44,7 +44,8 @@ class AuthService
             async function onSuccess()
             {
                 const resdata= await response.json();
-                // console.log(resdata['_id']);
+                // console.log(resdata['name']);
+                localStorage.setItem('x-user-name',resdata['name']);
                 localStorage.setItem('x-auth-token', resdata['token']);
                 localStorage.setItem('x-user-id',resdata['_id']);
                 
