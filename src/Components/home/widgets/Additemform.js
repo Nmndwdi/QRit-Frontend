@@ -45,7 +45,7 @@ function Additemform({ onSubmit , defaultName , defaultLink}) {
         }
         else
         {
-            Toaster("Enter a valid url");
+            Toaster("Enter a valid url","info");
         }
     }
 

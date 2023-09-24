@@ -40,7 +40,7 @@ class HomeService
 
                     function onSuccess()
                     {
-                        Toaster("Item Added Successfully !");
+                        Toaster("Item Added Successfully !","success");
                     }
                     httpErrorHandle(response,onSuccess);
                     if(response.status===200) return true;
@@ -48,21 +48,19 @@ class HomeService
                 }
                 else
                 {
-                    console.log("Signin again , Your token is invalid");
-                    alert("Signin again , Your token is invalid");
+                    Toaster("Signin again, Your token is invalid","error");
                     return false;
                 }
             }
             else
             {
-                console.log("Signin again , Your token is invalid");
-                alert("Signin again , Your token is invalid");
+                Toaster("Signin again , Your token is invalid","error");
                 return false;
             }
         } 
         catch (e) 
         {
-            alert(e.message);
+            Toaster(e.message,"error");
         }
     }
 
@@ -78,19 +76,20 @@ class HomeService
                 },
             });
 
-            function onSuccess()
+            // async function onSuccess()
+            // {
+            //     Toaster("Item Retrieved Successfully !","success");
+            // }
+            if(response.status===200)
             {
-                Toaster("Item Retrieved Successfully !");
+                const resdata = await response.json();
+                return resdata;
             }
-            await httpErrorHandle(response,onSuccess);
-
-            const resdata = await response.json();
-            return resdata;
+            else return null;
         } 
         catch (e) 
         {
-            console.log(e.message);
-            // alert(e.message);
+            Toaster(e.message,"error");
             return null;
         }
     }
@@ -130,7 +129,7 @@ class HomeService
                     // console.log(resdata);
                     function onSuccess()
                     {
-                        Toaster("Item Deleted Successfully !");
+                        Toaster("Item Deleted Successfully !","success");
                     }
                     httpErrorHandle(response,onSuccess);
                     if(response.status===200) return true;
@@ -138,21 +137,19 @@ class HomeService
                 }
                 else
                 {
-                    console.log("Signin again , Your token is invalid");
-                    alert("Signin again , Your token is invalid");
+                    Toaster("Signin again , Your token is invalid","error");
                     return false;
                 }
             }
             else
             {
-                console.log("Signin again , Your token is invalid");
-                alert("Signin again , Your token is invalid");
+                Toaster("Signin again , Your token is invalid","error");
                 return false;
             }
         } 
         catch (e) 
         {
-            alert(e.message);
+            Toaster(e.message,"error");
         }
     }
 
@@ -195,7 +192,7 @@ class HomeService
                     // console.log(resdata);
                     function onSuccess()
                     {
-                        Toaster("Item Updated Successfully !");
+                        Toaster("Item Updated Successfully !","success");
                     }
                     httpErrorHandle(response,onSuccess);
                     if(response.status===200) return true;
@@ -203,21 +200,19 @@ class HomeService
                 }
                 else
                 {
-                    console.log("Signin again , Your token is invalid");
-                    alert("Signin again , Your token is invalid");
+                    Toaster("Signin again , Your token is invalid","error");
                     return false;
                 }
             }
             else
             {
-                console.log("Signin again , Your token is invalid");
-                alert("Signin again , Your token is invalid");
+                Toaster("Signin again , Your token is invalid","error");
                 return false;
             }
         } 
         catch (e) 
         {
-            alert(e.message);
+            Toaster(e.message,"error");
         }
     }
 }

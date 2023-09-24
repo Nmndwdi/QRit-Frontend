@@ -1,6 +1,6 @@
 // import cookies from 'js-cookie';
 import httpErrorHandle from '../../../common/error_handling.js';
-import Toaster from '../../../common/toaster.js';
+import Toaster from '../../../common/toaster';
 import GlobalVariables from '../../../constants/GlobalVariables.js';
 
 class AuthService
@@ -16,16 +16,16 @@ class AuthService
                 body:JSON.stringify(data)
             });
 
+            // console.log(response);
             function onSuccess()
             {
-                Toaster("Account created! Login with the same credentials!");
+                Toaster("Account created! Login with the same credentials!","success");
             }
             httpErrorHandle(response,onSuccess);
         } 
         catch (e) 
         {
-            // console.log(e.message);
-            alert(e.message);
+            Toaster(e.message,"error");
         }
     }
 
@@ -40,13 +40,15 @@ class AuthService
                 body:JSON.stringify(data)
             });
 
+            // console.log(response);        
             async function onSuccess()
             {
                 const resdata= await response.json();
                 // console.log(resdata['_id']);
                 localStorage.setItem('x-auth-token', resdata['token']);
                 localStorage.setItem('x-user-id',resdata['_id']);
-                Toaster("Login successful!");
+                
+                Toaster("Login successful!","success");
             }
             await httpErrorHandle(response,onSuccess);
 
@@ -63,9 +65,7 @@ class AuthService
         } 
         catch (e) 
         {
-            // console.log(e.message);
-            alert(e.message);
-            // alert("hui hui");
+            Toaster(e.message,"error");
         }
     }
 }

@@ -1,4 +1,5 @@
-import Toaster from '../common/toaster.js';
+import Toaster from '../common/toaster';
+
 async function httpErrorHandle(response,onSuccess)
 {
     // console.log(response.status);
@@ -9,14 +10,15 @@ async function httpErrorHandle(response,onSuccess)
             break;
         case 400:
             const data400=await response.json();
-            Toaster(data400['msg']);
+            Toaster(data400['msg'],"info");
             break;
         case 500:
             const data500=await response.json();
-            Toaster(data500['error']);
+            Toaster(data500['error'],"error");
             break;
         default:
-            Toaster("Something weird happened , Please restart!");
+            Toaster("something weird happenened , please restart!","info");
+            break;
     }
 }
 

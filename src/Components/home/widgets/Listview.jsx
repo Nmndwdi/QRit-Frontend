@@ -5,8 +5,9 @@ import HomeService from '../services/home_service';
 import Additemform from './Additemform';
 import { useState } from 'react';
 
-const Listview = ({ data , buttonsShouldBeShown , RetrieveData }) => {
+const Listview = ({ data , buttonsShouldBeShown ,RetrieveData }) => {
     const arrdata = Object.entries(data.items);
+    const userId = localStorage.getItem('x-user-id');
 
     const [editIndex, setEditIndex] = useState(-1);
     const [objectId,setObjectId] = useState(null);
@@ -14,7 +15,7 @@ const Listview = ({ data , buttonsShouldBeShown , RetrieveData }) => {
   async function deleteItem(id)
   {
     const res = await HomeService.DeleteItem(id);
-    if(res===true) RetrieveData();
+    if(res===true) RetrieveData(userId);
   }
 
   function updateItem(id,index)
@@ -39,7 +40,7 @@ const Listview = ({ data , buttonsShouldBeShown , RetrieveData }) => {
       if(res===true)
       {
         setEditIndex(-1);
-        RetrieveData();
+        RetrieveData(userId);
       }
     }
     else
