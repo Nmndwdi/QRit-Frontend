@@ -49,30 +49,39 @@ function Additemform({ onSubmit , defaultName , defaultLink}) {
         }
     }
 
-  return (
-    <div>
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>
-                    <input type='text' name="item_name" placeholder='Site name' required autoComplete="off" value={name} onChange={handleNameChange}/>
-                </label>
-                {/* <br></br> */}
-                <label htmlFor="item_link"></label>
-                <input
-                    type="text"
-                    id="item_link"
-                    name="item_link"
-                    placeholder="https://example.com"
-                    value={url}
-                    onChange={handleUrlChange}
-                    required autoComplete='off'
-                />
-                <button type='Submit'>Submit</button>
-                {/* {validationMessage && <p style={{ color: 'red' }}>{validationMessage}</p>} */}
-            </div>
-        </form>
-    </div>
-  )
+    return (
+        <div className="bg-white p-4 rounded-xl shadow-md">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="text"
+              name="item_name"
+              placeholder="Site name"
+              required
+              autoComplete="off"
+              value={name}
+              onChange={handleNameChange}
+              className="w-full p-2 border border-gray-300 rounded"
+            />
+            <input
+              type="text"
+              id="item_link"
+              name="item_link"
+              placeholder="https://example.com"
+              required
+              autoComplete="off"
+              value={url}
+              onChange={handleUrlChange}
+              className="w-full p-2 border border-gray-300 rounded"
+            />
+            <button
+              type="submit"
+              className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      )      
 }
 
 export default Additemform

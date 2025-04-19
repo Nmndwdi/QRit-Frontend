@@ -50,22 +50,45 @@ const Listview = ({ data , buttonsShouldBeShown ,RetrieveData }) => {
   };
 
   return (
-    <>
-        <ul>
-          {arrdata.map((item, index) => (
-            // <div key={index}>
-            //   <ItemContainer itemName={item[1].itemName} itemLink={item[1].itemLink}></ItemContainer>
-            //    {shouldBeShown===true ?(<ItemButton onDelete={() => deleteItem(item[1]._id)} onUpdate={() => updateItem(item[1]._id)}></ItemButton>):(<></>)}
-            // </div>
-            
-            <li key={index}>
-              {editIndex===index ?<Additemform onSubmit={handleFormSubmit} defaultName={item[1].itemName} defaultLink={item[1].itemLink}></Additemform> :  <><span>Name: {item[1].itemName}</span><br></br><a href={item[1].itemLink}>Link: {item[1].itemLink}</a></>}
-              {buttonsShouldBeShown===true ?(<>{editIndex===index ?<></>:<br></br>}<ItemButton onDelete={() => deleteItem(item[1]._id)} onUpdate={() => updateItem(item[1]._id, index)} buttonName={editIndex === index ? 'Cancel' : 'Update'}></ItemButton></>):(<></>)}
-            </li>
-          ))}
-        </ul>
-    </>
-  );
+    <ul className="space-y-4 w-full">
+      {arrdata.map((item, index) => (
+        <li
+          key={index}
+          className="bg-white rounded-xl p-4 shadow flex justify-between items-start"
+        >
+          <div className="flex-1">
+            {editIndex === index ? (
+              <Additemform
+                onSubmit={handleFormSubmit}
+                defaultName={item[1].itemName}
+                defaultLink={item[1].itemLink}
+              />
+            ) : (
+              <>
+                <span className="block text-lg font-medium">Name: {item[1].itemName}</span>
+                <a
+                  href={item[1].itemLink}
+                  className="text-blue-500 underline break-all"
+                >
+                  Link: {item[1].itemLink}
+                </a>
+              </>
+            )}
+          </div>
+  
+          {buttonsShouldBeShown && (
+            <div className="ml-4 mt-2">
+              <ItemButton
+                onDelete={() => deleteItem(item[1]._id)}
+                onUpdate={() => updateItem(item[1]._id, index)}
+                buttonName={editIndex === index ? 'Cancel' : 'Update'}
+              />
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+  )  
 };
 
 export default Listview;

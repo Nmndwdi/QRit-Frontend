@@ -44,24 +44,55 @@ function AuthForm({nameShouldBeShown , buttonName}) {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    {nameShouldBeShown===true ?(<><label>
-                        <input type='text' name="auth_name" placeholder='Enter you name' autoComplete="off" value={name} onChange={handleNameChange}/>
-                    </label><br></br></>):(<></>)}
-                    <label>
-                        <input type='email' name="auth_email" placeholder='Enter your email' required autoComplete="off" value={email} onChange={handleEmailChange}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        <input type='password' name="auth_password" placeholder='Enter you password' required value={password} onChange={handlePasswordChange}/>
-                    </label>
-                    <br></br>
-                    <button type='Submit'>{buttonName}</button>
-                </div>
-            </form>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {nameShouldBeShown && (
+              <div>
+                <input
+                  type="text"
+                  name="auth_name"
+                  placeholder="Enter your name"
+                  autoComplete="off"
+                  value={name}
+                  onChange={handleNameChange}
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
+                />
+              </div>
+            )}
+      
+            <div>
+              <input
+                type="email"
+                name="auth_email"
+                placeholder="Enter your email"
+                required
+                autoComplete="off"
+                value={email}
+                onChange={handleEmailChange}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
+              />
+            </div>
+      
+            <div>
+              <input
+                type="password"
+                name="auth_password"
+                placeholder="Enter your password"
+                required
+                value={password}
+                onChange={handlePasswordChange}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
+              />
+            </div>
+      
+            <button
+              type="submit"
+              className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
+            >
+              {buttonName}
+            </button>
+          </form>
         </div>
-      )
+      );      
 }
 
 export default AuthForm

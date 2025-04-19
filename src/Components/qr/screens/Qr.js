@@ -33,14 +33,23 @@ function Qr() {
     }
   }, []);
 
-return (
-<>
-    <div>
-        <h1>{userName}</h1>
-        {data!=null ?(<Listview data={data} buttonsShouldBeShown={buttonsShouldBeShown} RetrieveData={RetrieveData}/>):(<></>)}
-    </div>
-</>
-)
+  return (
+    <>
+      <div className="min-h-screen bg-gradient-to-br from-red-100 to-red-300 px-4 py-6 flex flex-col items-center">
+        <h1 className="text-2xl font-bold text-red-700 mb-6 text-center">
+          {userName}
+        </h1>
+  
+        {data !== null ? (
+          <Listview
+            data={data}
+            buttonsShouldBeShown={buttonsShouldBeShown}
+            RetrieveData={RetrieveData}
+          />
+        ) : null}
+      </div>
+    </>
+  );
 }
 
 export default Qr
