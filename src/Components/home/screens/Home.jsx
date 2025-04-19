@@ -11,7 +11,7 @@ function Home() {
 
   const navigate = useNavigate();
   const userId = localStorage.getItem('x-user-id');
-  const userName = localStorage.getItem('x-user-name').toUpperCase();
+  const userName = localStorage.getItem('x-user-name')?.toUpperCase();
 
   const logout = () => {
     localStorage.removeItem('x-auth-token');
@@ -141,7 +141,7 @@ function Home() {
           >
             Logout
           </button>
-          <div className="w-40 h-40">
+          <div className="w-30 h-40">
             <QrGenerator userId={userId} userName={userName} />
           </div>
         </div>
